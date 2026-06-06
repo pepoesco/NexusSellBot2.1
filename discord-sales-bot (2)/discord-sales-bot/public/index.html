@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="NexusSellBot e um bot de vendas para Discord com catalogo, estoque, Pix, Itau, Efibank, Stripe, PayPal e entrega automatica."
+    />
+    <title>NexusSellBot</title>
+    <link rel="preconnect" href="https://unpkg.com" />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="#top" aria-label="NexusSellBot">
+        <span class="brand-mark">N</span>
+        <span>NexusSellBot</span>
+      </a>
+      <nav class="nav-links" aria-label="Principal">
+        <a href="#gateways">Gateways</a>
+        <a href="#controle">Controle</a>
+        <a href="#deploy">Deploy</a>
+      </nav>
+      <a class="icon-link" href="https://discord.com/developers/applications" aria-label="Discord Developer Portal">
+        <i data-lucide="external-link"></i>
+      </a>
+    </header>
+
+    <main id="top">
+      <section class="hero" aria-labelledby="hero-title">
+        <img class="hero-bg" src="./assets/nexus-hero.png" alt="" />
+        <div class="hero-shade"></div>
+        <div class="hero-content">
+          <p class="eyebrow">Discord commerce stack</p>
+          <h1 id="hero-title">NexusSellBot</h1>
+          <p class="hero-copy">
+            Loja, checkout, Pix, bancos, estoque e entrega automatica dentro do seu servidor, com uma operacao pronta para escala.
+          </p>
+          <div class="hero-actions">
+            <a class="button primary" href="#deploy">
+              <i data-lucide="rocket"></i>
+              <span>Preparar deploy</span>
+            </a>
+            <a class="button secondary" href="#gateways">
+              <i data-lucide="wallet-cards"></i>
+              <span>Ver pagamentos</span>
+            </a>
+          </div>
+          <dl class="signal-row" aria-label="Resumo do NexusSellBot">
+            <div>
+              <dt>Gateways</dt>
+              <dd>8</dd>
+            </div>
+            <div>
+              <dt>Entrega</dt>
+              <dd>Auto</dd>
+            </div>
+            <div>
+              <dt>Stack</dt>
+              <dd>TS</dd>
+            </div>
+          </dl>
+        </div>
+      </section>
+
+      <section class="status-strip" aria-label="Operacao">
+        <div>
+          <span class="status-dot"></span>
+          <strong>Catalogo</strong>
+          <span>produtos, cargos, estoque</span>
+        </div>
+        <div>
+          <span class="status-dot amber"></span>
+          <strong>Pedidos</strong>
+          <span>reserva e expiracao</span>
+        </div>
+        <div>
+          <span class="status-dot rose"></span>
+          <strong>Webhooks</strong>
+          <span>eventos idempotentes</span>
+        </div>
+      </section>
+
+      <section class="section split" id="gateways">
+        <div class="section-copy">
+          <p class="eyebrow">Pagamentos</p>
+          <h2>Todos os caminhos de venda no mesmo fluxo.</h2>
+          <p>
+            O checkout do NexusSellBot conversa com gateways prontos e tambem aceita integracao customizada para banco,
+            adquirente ou automacao propria.
+          </p>
+        </div>
+        <div class="gateway-grid" aria-label="Gateways integrados">
+          <article><i data-lucide="badge-dollar-sign"></i><span>Stripe</span></article>
+          <article><i data-lucide="landmark"></i><span>Itau Pix</span></article>
+          <article><i data-lucide="scan-line"></i><span>Pix normal</span></article>
+          <article><i data-lucide="banknote"></i><span>Efibank</span></article>
+          <article><i data-lucide="credit-card"></i><span>Mercado Pago</span></article>
+          <article><i data-lucide="wallet"></i><span>PayPal</span></article>
+          <article><i data-lucide="receipt-text"></i><span>Manual</span></article>
+          <article><i data-lucide="webhook"></i><span>Custom</span></article>
+        </div>
+      </section>
+
+      <section class="section dashboard" id="controle">
+        <div class="dashboard-panel">
+          <div class="panel-head">
+            <div>
+              <p class="eyebrow">Painel vivo</p>
+              <h2>Pedido entra. Estoque reserva. Pagamento confirma. Entrega sai.</h2>
+            </div>
+            <button class="icon-button" id="cycle-state" type="button" aria-label="Alternar simulacao">
+              <i data-lucide="refresh-cw"></i>
+            </button>
+          </div>
+          <div class="pipeline" aria-label="Pipeline de pedido">
+            <div class="pipeline-step active">
+              <span>01</span>
+              <strong>Checkout</strong>
+              <small>/comprar</small>
+            </div>
+            <div class="pipeline-step">
+              <span>02</span>
+              <strong>Webhook</strong>
+              <small>Pix recebido</small>
+            </div>
+            <div class="pipeline-step">
+              <span>03</span>
+              <strong>Entrega</strong>
+              <small>cargo + DM</small>
+            </div>
+          </div>
+          <div class="metrics">
+            <div>
+              <span>Receita hoje</span>
+              <strong id="metric-revenue">R$ 8.420</strong>
+            </div>
+            <div>
+              <span>Conversao</span>
+              <strong id="metric-conversion">68%</strong>
+            </div>
+            <div>
+              <span>Pedidos</span>
+              <strong id="metric-orders">137</strong>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section deploy" id="deploy">
+        <div class="section-copy">
+          <p class="eyebrow">Launch</p>
+          <h2>Configure, registre comandos e coloque no ar.</h2>
+          <p>O projeto ja esta no seu computador com Docker, seed, TypeScript, SQLite e webhooks HTTP.</p>
+        </div>
+        <div class="terminal" aria-label="Comandos de deploy">
+          <div class="terminal-top">
+            <span></span><span></span><span></span>
+          </div>
+          <pre><code>cd C:\Users\pepoe\discord-sales-bot
+copy .env.example .env
+npm run register
+npm run seed
+npm run dev</code></pre>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <span>NexusSellBot</span>
+      <span>Discord sales infrastructure</span>
+    </footer>
+
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+    <script src="./app.js"></script>
+  </body>
+</html>

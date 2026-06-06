@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>NexusSellBot Panel</title>
+    <link rel="stylesheet" href="./panel.css" />
+  </head>
+  <body>
+    <main class="shell">
+      <aside class="sidebar">
+        <a class="brand" href="../">
+          <span class="brand-mark">N</span>
+          <span>NexusSellBot</span>
+        </a>
+        <nav class="side-nav" aria-label="Painel">
+          <a href="#overview" class="active"><i data-lucide="layout-dashboard"></i><span>Operacao</span></a>
+          <a href="#orders"><i data-lucide="receipt-text"></i><span>Pedidos</span></a>
+          <a href="#products"><i data-lucide="package"></i><span>Produtos</span></a>
+          <a href="#gateways"><i data-lucide="landmark"></i><span>Gateways</span></a>
+        </nav>
+      </aside>
+
+      <section class="workspace">
+        <header class="topbar">
+          <div>
+            <p class="eyebrow">Admin panel</p>
+            <h1 id="store-name">NexusSellBot</h1>
+          </div>
+          <div class="topbar-actions">
+            <button class="icon-button" id="refresh" type="button" aria-label="Atualizar painel">
+              <i data-lucide="refresh-cw"></i>
+            </button>
+            <button class="button ghost" id="logout" type="button">
+              <i data-lucide="log-out"></i>
+              <span>Sair</span>
+            </button>
+          </div>
+        </header>
+
+        <section class="login-panel" id="login-panel" hidden>
+          <div class="login-box">
+            <p class="eyebrow">Acesso restrito</p>
+            <h2>Painel NexusSellBot</h2>
+            <p id="login-note">Entre com a senha definida em <code>PANEL_PASSWORD</code>.</p>
+            <form id="login-form">
+              <label for="password">Senha</label>
+              <div class="password-row">
+                <input id="password" name="password" type="password" autocomplete="current-password" required />
+                <button class="button primary" type="submit">
+                  <i data-lucide="lock-keyhole"></i>
+                  <span>Entrar</span>
+                </button>
+              </div>
+            </form>
+          </div>
+        </section>
+
+        <section class="panel-grid" id="panel-grid" hidden>
+          <section class="metrics" id="overview" aria-label="Resumo">
+            <article>
+              <i data-lucide="badge-dollar-sign"></i>
+              <span>Receita bruta</span>
+              <strong id="gross-revenue">R$ 0,00</strong>
+            </article>
+            <article>
+              <i data-lucide="shopping-cart"></i>
+              <span>Pedidos</span>
+              <strong id="total-orders">0</strong>
+            </article>
+            <article>
+              <i data-lucide="check-circle-2"></i>
+              <span>Entregues</span>
+              <strong id="fulfilled-orders">0</strong>
+            </article>
+            <article>
+              <i data-lucide="shield-question"></i>
+              <span>Analise manual</span>
+              <strong id="manual-orders">0</strong>
+            </article>
+          </section>
+
+          <section class="row-grid">
+            <article class="panel" id="gateways">
+              <div class="panel-head">
+                <div>
+                  <p class="eyebrow">Gateways</p>
+                  <h2>Status de pagamentos</h2>
+                </div>
+              </div>
+              <div class="gateway-list" id="gateway-list"></div>
+            </article>
+
+            <article class="panel">
+              <div class="panel-head">
+                <div>
+                  <p class="eyebrow">Estoque</p>
+                  <h2>Baixo estoque</h2>
+                </div>
+              </div>
+              <div class="stock-list" id="stock-list"></div>
+            </article>
+          </section>
+
+          <section class="panel" id="orders">
+            <div class="panel-head">
+              <div>
+                <p class="eyebrow">Pedidos</p>
+                <h2>Ultimos pedidos</h2>
+              </div>
+            </div>
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Pedido</th>
+                    <th>Cliente</th>
+                    <th>Produto</th>
+                    <th>Valor</th>
+                    <th>Status</th>
+                    <th></th>
+                  </tr>
+                </thead>
+                <tbody id="orders-body"></tbody>
+              </table>
+            </div>
+          </section>
+
+          <section class="row-grid products-area" id="products">
+            <article class="panel">
+              <div class="panel-head">
+                <div>
+                  <p class="eyebrow">Produtos</p>
+                  <h2>Catalogo</h2>
+                </div>
+              </div>
+              <div class="product-list" id="product-list"></div>
+            </article>
+
+            <article class="panel">
+              <div class="panel-head">
+                <div>
+                  <p class="eyebrow">Produto</p>
+                  <h2>Criar ou atualizar</h2>
+                </div>
+              </div>
+              <form class="product-form" id="product-form">
+                <label>SKU<input name="sku" required maxlength="80" /></label>
+                <label>Nome<input name="name" required maxlength="120" /></label>
+                <label>Categoria<input name="category" value="geral" required maxlength="80" /></label>
+                <div class="two-cols">
+                  <label>Preco<input name="price" type="number" min="0" step="0.01" required /></label>
+                  <label>Estoque<input name="stock" type="number" min="-1" step="1" value="-1" required /></label>
+                </div>
+                <label>Role ID<input name="roleId" maxlength="80" /></label>
+                <label>Imagem URL<input name="imageUrl" type="url" /></label>
+                <label>Descricao<textarea name="description" rows="3"></textarea></label>
+                <label>Entrega<textarea name="deliveryText" rows="4"></textarea></label>
+                <button class="button primary" type="submit">
+                  <i data-lucide="save"></i>
+                  <span>Salvar produto</span>
+                </button>
+              </form>
+            </article>
+          </section>
+        </section>
+      </section>
+    </main>
+
+    <div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+    <script src="./panel.js"></script>
+  </body>
+</html>

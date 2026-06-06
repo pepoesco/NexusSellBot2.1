@@ -1,0 +1,15 @@
+.git
+node_modules
+dist
+data
+certs
+.env
+.env.*
+!.env.example
+npm-debug.log*
+coverage
+*.zip
+horizon-nexussellbot-custom
+nexussellbot-horizon-custom-theme
+shopify-horizon-drop-in
+shopify-theme

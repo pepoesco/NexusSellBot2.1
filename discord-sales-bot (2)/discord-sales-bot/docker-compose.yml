@@ -1,0 +1,11 @@
+services:
+  nexus-sell-bot:
+    build: .
+    env_file:
+      - .env
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./data:/app/data
+      - ./certs:/app/certs:ro
+    restart: unless-stopped
